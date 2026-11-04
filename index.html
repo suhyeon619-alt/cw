@@ -166,6 +166,37 @@ button{font:inherit;color:inherit}
 .prog i{display:block;height:100%;width:0;background:var(--pc);transition:width .4s}
 @media(max-width:520px){.bar .t{display:none}.bar button{padding:7px 11px}}
 @media(min-width:700px){.remark{white-space:nowrap;font-size:clamp(11px,1.45vw,13.5px)}}
+/* 모바일 여백 축소 · 지역 탭 확대 · 차례 번호 3배 */
+@media screen and (max-width:768px){
+  .pg{padding:6px 8px}
+  .pad{padding:16px 14px}
+  .tabrow{margin-bottom:8px;padding-bottom:8px;gap:8px}
+  .tabs{gap:8px}
+  .tabs a{font-size:14px;padding:8px 15px;min-height:38px;border-radius:20px;display:inline-flex;align-items:center}
+  .tocbtn{padding:8px 14px;font-size:13.5px}
+  .crumb{margin-bottom:2px}
+  .chap-h{padding-bottom:6px;margin-bottom:10px;gap:8px}
+  .chap-h h3{font-size:24px}
+  .grid{gap:8px}
+  .entry{min-height:112px;padding:10px 12px}
+  .fest{padding:11px 12px}
+  .fest .org{margin-bottom:6px}
+  .fest .dates{grid-template-columns:1fr 1fr;padding:6px 0;margin-bottom:6px;gap:6px}
+  .qrgrid{gap:10px}
+  .qcard{padding:12px;gap:12px}
+  .notice{margin-top:12px;padding:12px 14px}
+  .remark{margin-top:10px;padding:10px 12px}
+  .bar{padding-top:6px;padding-bottom:6px}
+  .toc.pad{padding:18px 16px}
+  .toc h2{font-size:32px;margin-bottom:4px}
+  .toc .sub{margin-bottom:6px}
+  .toc ol{margin-bottom:12px}
+  .toc li a{grid-template-columns:118px 1fr;gap:4px 10px;padding:10px 0}
+  .toc .n{font-size:96px;line-height:.85;letter-spacing:-.05em;align-self:center}
+  .toc b{font-size:20px}
+  .toc .d{font-size:14px}
+  .guide{padding:14px 16px}
+}
 </style>
 
 <div class="app" id="app" data-part="0">
