@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#18243B">
 <title>실크로드 문화소식</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,7 +204,13 @@ button{font:inherit;color:inherit}
   .guide{padding:14px 16px}
 }
 </style>
-
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+img{max-width:100%}
+</style>
+</head>
+<body>
 <div class="app" id="app" data-part="0">
   <div class="viewport" id="vp"><div class="track" id="track"></div></div>
   <nav class="bar" aria-label="책자 넘기기">
@@ -250,7 +262,7 @@ var EV=[
  ['음악회','KBS교향악단과 함께하는 여수음악제 송년음악회','2026.12.26','전남 GS칼텍스 예울마루 대극장',Y+'places/23001031/products/26014186']
 ]},
 {id:'chungcheong',name:'충청',sub:'대전 · 세종 · 충북 · 충남',rows:[
- ['전시','백제문화전당 상설전시 〈빛으로 잇는 시간, 백제〉','2026.08.01 – 12.31','충남 부여 백제문화전당',Y+'places/26000169/products/26010582',1],
+ ['전시','〈빛으로 잇는 시간, 백제〉','2026.08.01 – 12.31','충남 부여 백제문화전당',Y+'places/26000169/products/26010582',1],
  ['콘서트','이은미 콘서트 with 오케스트라 〈추억이 핀다〉','2026.11.08','청주 청주예술의전당 대공연장',Y+'places/18001374/products/26012065'],
  ['콘서트','겨울, 밤마실 콘서트 Ⅵ 대전','2026.11.13 – 11.14','대전 플랜에이 B홀',Y+'products/26015612'],
  ['콘서트','윤종신 전국투어 〈가을냄새〉 대전','2026.11.14 17:00','대전 우송예술회관',Y+'products/26013018'],
@@ -426,3 +438,5 @@ window.addEventListener('resize',eqFest);
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(eqFest)}
 go(0);
 </script>
+</body>
+</html>
