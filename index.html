@@ -74,8 +74,9 @@ button{font:inherit;color:inherit}
 .chap-h h3{font-family:var(--display);font-size:28px;margin:0}
 .chap-h em{font-style:normal;font-size:13px;color:var(--muted)}
 .chap-h .idx{margin-left:auto;font-family:var(--display);font-weight:900;color:var(--pt);font-size:15px;letter-spacing:.08em}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));grid-auto-rows:1fr;gap:12px}
 .entry,.fest{border:1px solid var(--line);border-left:4px solid var(--pc);padding:13px 15px;min-width:0;background:var(--card)}
+.entry{min-height:128px}
 .entry .when{font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--muted);font-weight:500;margin-bottom:4px}
 
 /* 모바일 전용 스타일 */
@@ -100,9 +101,16 @@ button{font:inherit;color:inherit}
   .toc ol{flex:1;display:flex;flex-direction:column;margin-bottom:16px}
   .toc li{flex:1;display:flex}
   .toc li a{flex:1;align-content:center}
-  .toc .n{font-size:38px}
-  .toc b{font-size:19px}
-  .guide{margin-top:0}
+  .toc.pad{padding:26px 20px}
+  .toc h2{font-size:36px;margin-bottom:6px}
+  .toc .sub{font-size:15.5px;margin-bottom:12px}
+  .toc li a{grid-template-columns:72px 1fr;gap:6px 14px}
+  .toc .n{font-size:50px}
+  .toc b{font-size:23px;line-height:1.3}
+  .toc .d{font-size:15px;line-height:1.5;margin-top:4px}
+  .guide{margin-top:0;padding:18px 18px;font-size:15px}
+  .guide b{font-size:17px;margin-bottom:6px;font-family:var(--display)}
+  .guide .ln+.ln{margin-top:4px}
 }
 .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--pt);border:1px solid var(--pc);padding:0 7px;border-radius:2px;margin-right:6px;vertical-align:1px}
 .entry h4{display:inline;font-size:15.5px;margin:0;font-weight:700;overflow-wrap:anywhere}
@@ -115,8 +123,9 @@ button{font:inherit;color:inherit}
 .fest .org{font-size:12.5px;color:var(--muted);margin:2px 0 8px}
 .fest .dates{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;margin-bottom:8px;padding:8px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .fest .dates b{display:block;color:var(--pt);font-size:11px;letter-spacing:.1em}
-.fest p{margin:0;font-size:13.5px}
-.fest .lk{display:inline-block;margin-top:8px;font-size:13px;color:var(--pt);font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}
+.fest{display:flex;flex-direction:column}
+.fest p{margin:0 0 10px;font-size:13.5px}
+.fest .lk{display:inline-block;margin-top:auto;align-self:flex-start;font-size:13px;color:var(--pt);font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}
 @media(max-width:420px){.fest .dates{grid-template-columns:1fr}}
 
 /* QR 카드 */
@@ -181,7 +190,7 @@ var EV=[
  ['전시','툴루즈 로트렉과 수잔 발라동','2026.11.07 – 2027.02.09','서울 세종문화회관 미술관',Y+'places/19000626/products/26013616'],
  ['전시','조르조 모란디','2026.11.21 – 2027.03.01','서울 더현대 서울 ALT.1',Y+'places/24001688/products/26012154'],
  ['음악회','사이먼 래틀 & 바이에른 방송교향악단','2026.11.12 – 11.13 19:30','서울 예술의전당 콘서트홀','https://www.sac.or.kr/site/main/content/vincero'],
- ['콘서트','NMIXX 월드투어 〈EPISODE 1: ZERO FRONTIER〉 피날레','2026.11.27 – 11.29','인천 INSPIRE ARENA',Y+'places/26001251/products/26013946'],
+ ['콘서트','NMIXX 월드투어 피날레','2026.11.27 – 11.29','인천 INSPIRE ARENA',Y+'places/26001251/products/26013946'],
  ['콘서트','이승윤 콘서트 [0]','2026.12.11 – 12.13','경기 고양 킨텍스 제2전시장',Y+'places/26001360/products/26015138'],
  ['콘서트','자우림 [MIDNIGHT EXPRESS 2026-2027] 서울','2026.12.18 – 12.20','서울 올림픽공원 올림픽홀','https://sports.khan.co.kr/en/article/202610240351007'],
  ['음악회','파리나무십자가소년합창단 특별초청 공연','2026.12.22','경기 성남아트센터 콘서트홀',Y+'places/17000762/products/26012377'],
@@ -231,31 +240,31 @@ var FE=[
 {id:'capital',name:'수도권',rows:[
  {n:'서울빛초롱축제',w:'서울 청계천',o:'2009년 시작',y26:'12월 개최 예정 (세부 일정 발표 전)',y27:'12월 전후 개최 예상',d:'청계천 일대를 형형색색의 등(燈)으로 밝히는 겨울 야간 축제입니다. 지난 시즌에는 2025년 12월 12일부터 2026년 1월 18일까지 열렸습니다.',s:'https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=360'},
  {n:'수원화성문화제',w:'경기 수원',o:'1964년 시작 · 2026년 제63회',y26:'10.04 – 10.11 (종료)',y27:'10월 초 개최 예상',d:'유네스코 세계유산 수원화성을 배경으로 정조대왕 능행차를 공동 재현하는 대표 역사 문화 축제이며, 글로벌축제로 선정되었습니다.',s:'https://shfestival.com'},
- {n:'안성맞춤 남사당 바우덕이축제',w:'경기 안성',o:'2001년 시작',y26:'10.02 – 10.05 (종료)',y27:'10월 초 개최 예상',d:'남사당 풍물과 줄타기 등 전통 연희를 현대적으로 풀어낸 문화관광축제입니다.'}
+ {n:'안성맞춤 남사당 바우덕이축제',w:'경기 안성',o:'2001년 시작',y26:'10.02 – 10.05 (종료)',y27:'10월 초 개최 예상',d:'남사당 풍물과 줄타기 등 전통 연희를 현대적으로 풀어낸 문화관광축제입니다. 남사당패 최초의 여성 꼭두쇠 바우덕이를 기리는 축제로 알려져 있습니다.'}
 ]},
 {id:'gyeongsang',name:'경상',rows:[
  {n:'포항국제불빛축제',w:'경북 포항 영일대해수욕장 · 송도부두',o:'2004년 시작',y26:'11.19 – 11.21 (개최 예정)',y27:'발표 전',d:'바다 위로 펼쳐지는 대규모 불꽃쇼가 중심인 축제입니다. 일정이 조정될 수 있어 개최 전 공식 공지 확인을 권장합니다.',s:'https://phcf.or.kr'},
  {n:'안동국제탈춤페스티벌',w:'경북 안동',o:'1997년 시작',y26:'09.24 – 10.04 (종료)',y27:'9월 말 – 10월 초 개최 예상',d:'국내외 탈춤과 탈 문화를 한자리에서 만나는 국제 축제로, 2026년 글로벌축제로 선정되었습니다.',s:'https://www.maskdance.com'},
  {n:'진주남강유등축제',w:'경남 진주 진주성 · 남강',o:'1949년 유등 행사에서 출발 · 2000년 독립 개최',y26:'10.03 – 10.18 (종료)',y27:'10월 개최 예상',d:'임진왜란 진주성 전투의 역사에서 비롯된 유등 문화를 남강 위에 구현한 야간 축제이며, 글로벌축제로 선정되었습니다.',s:'https://yudeung.com'},
- {n:'고령 대가야축제',w:'경북 고령',o:'2026–2027 문화관광축제',y26:'03.27 – 03.29 (종료)',y27:'3월 말 개최 예상',d:'대가야의 역사와 문화를 재현하는 축제로, 2026~2027년 문화관광축제로 선정되었습니다.'}
+ {n:'고령 대가야축제',w:'경북 고령',o:'2026–2027 문화관광축제',y26:'03.27 – 03.29 (종료)',y27:'3월 말 개최 예상',d:'대가야의 역사와 문화를 재현하는 축제로, 2026~2027년 문화관광축제로 선정되었습니다. 가야 연맹을 이끌었던 고령의 역사 자원을 바탕으로 합니다.'}
 ]},
 {id:'jeolla',name:'전라',rows:[
  {n:'남원 춘향제',w:'전북 남원',o:'1931년 시작 · 2026년 제96회',y26:'04.30 – 05.06 (종료)',y27:'4월 말 – 5월 초 개최 예상',d:'춘향 이야기를 중심으로 한 국내 최장수 지역축제로 소개되며, 매년 봄 광한루원 일대에서 열립니다.',s:'https://chunhyang.org'},
- {n:'전주세계소리축제',w:'전북 전주',o:'2001년 시작 · 2026년 제25회',y26:'08.12 – 08.16 (종료)',y27:'8 – 9월 개최 예상',d:'판소리를 비롯한 우리 소리와 세계 음악을 아우르는 공연예술 축제입니다.',s:'https://sorifestival.com'},
- {n:'보성다향대축제',w:'전남 보성',o:'2026년 제49회',y26:'05.01 – 05.05 (종료)',y27:'5월 초 개최 예상',d:'차의 고장 보성의 다문화를 체험하는 축제로, 2018년부터 2027년까지 문화관광축제로 연속 지정되었습니다.'},
- {n:'정남진 장흥 물축제',w:'전남 장흥',o:'2026년 제19회',y26:'07.25 – 08.02 (종료)',y27:'7월 말 – 8월 초 개최 예상',d:'탐진강 일원에서 열리는 여름 물놀이 축제로, 예비 글로벌축제로 선정되었습니다.'}
+ {n:'전주세계소리축제',w:'전북 전주',o:'2001년 시작 · 2026년 제25회',y26:'08.12 – 08.16 (종료)',y27:'8 – 9월 개최 예상',d:'판소리를 비롯한 우리 소리와 세계 음악을 아우르는 공연예술 축제입니다. 2001년 시작해 2026년 제25회를 맞았으며, 전주에서 다양한 소리 공연이 펼쳐집니다.',s:'https://sorifestival.com'},
+ {n:'보성다향대축제',w:'전남 보성',o:'2026년 제49회',y26:'05.01 – 05.05 (종료)',y27:'5월 초 개최 예상',d:'차의 고장 보성에서 열리는 차 문화 체험 축제로, 2018년부터 2027년까지 문화관광축제로 연속 지정되었습니다. 해마다 5월 초에 열립니다.'},
+ {n:'정남진 장흥 물축제',w:'전남 장흥',o:'2026년 제19회',y26:'07.25 – 08.02 (종료)',y27:'7월 말 – 8월 초 개최 예상',d:'탐진강 일원에서 열리는 여름 물놀이 축제입니다. 2026년 명예 문화관광축제이자 예비 글로벌축제로 선정되었습니다.'}
 ]},
 {id:'chungcheong',name:'충청',rows:[
- {n:'백제문화제',w:'충남 공주 · 부여',o:'1955년 시작 · 2026년 제72회',y26:'10.03 – 10.11 (종료)',y27:'10월 초 개최 예상',d:'웅진(공주)과 사비(부여) 두 고도에서 함께 열리며 백제의 역사와 문화를 재현합니다.'},
- {n:'금산인삼축제',w:'충남 금산',o:'1981년 시작',y26:'10.02 – 10.11 (종료)',y27:'10월 초 개최 예상',d:'인삼 수확과 손질 등 산지의 문화를 직접 체험할 수 있는 축제입니다.',s:'https://insamfestival.co.kr'},
+ {n:'백제문화제',w:'충남 공주 · 부여',o:'1955년 시작 · 2026년 제72회',y26:'10.03 – 10.11 (종료)',y27:'10월 초 개최 예상',d:'웅진(공주)과 사비(부여) 두 고도에서 함께 열리며 백제의 역사와 문화를 재현합니다. 1955년 시작된 충남의 대표 역사 문화 축제입니다.'},
+ {n:'금산인삼축제',w:'충남 금산',o:'1981년 시작',y26:'10.02 – 10.11 (종료)',y27:'10월 초 개최 예상',d:'인삼의 고장 금산에서 해마다 가을에 열리며, 인삼 수확과 손질 등 산지의 문화를 직접 체험할 수 있는 축제입니다.',s:'https://insamfestival.co.kr'},
  {n:'보령머드축제',w:'충남 보령 대천해수욕장',o:'1998년 시작으로 알려짐 · 2026년 제29회',y26:'07.24 – 08.09 (종료)',y27:'7 – 8월 개최 예상',d:'갯벌 머드를 활용한 체험형 여름 축제로 외국인 방문객이 많으며, 글로벌축제로 선정되었습니다.',s:'https://mudfestival.or.kr'},
- {n:'천안흥타령춤축제',w:'충남 천안',o:'2003년 시작',y26:'10.01 – 10.05 (종료)',y27:'10월 초 개최 예상',d:'거리 퍼레이드와 경연 등 춤을 주제로 한 전국 규모의 축제입니다.',s:'https://cheonanfestival.com'}
+ {n:'천안흥타령춤축제',w:'충남 천안',o:'2003년 시작',y26:'10.01 – 10.05 (종료)',y27:'10월 초 개최 예상',d:'거리 퍼레이드와 경연 등 춤을 주제로 한 전국 규모의 축제입니다. 2003년 시작해 해마다 가을 천안에서 열립니다.',s:'https://cheonanfestival.com'}
 ]},
 {id:'gangwon',name:'강원',rows:[
  {n:'화천산천어축제',w:'강원 화천',o:'글로벌축제',y26:'2026–27 겨울 시즌 개최 예정',y27:'2027.01.09 – 01.31 (한국관광공사 등록 일정)',d:'얼어붙은 강 위에서 즐기는 얼음낚시가 대표 프로그램인 겨울 축제입니다. 2027년 체험 이용료 조정이 논의되고 있어 방문 전 공지 확인을 권장합니다.',s:'https://narafestival.com'},
  {n:'강릉단오제',w:'강원 강릉',o:'유네스코 인류무형문화유산 · 국가무형문화재',y26:'06.15 – 06.22 (종료)',y27:'6월 중 개최 예상 (음력 5월 5일 전후)',d:'천 년의 전통을 이어 온 영신행차와 관노가면극, 단오굿 등을 무료로 관람할 수 있는 축제입니다.',s:'https://danojefestival.or.kr'},
- {n:'정선아리랑제',w:'강원 정선',o:'2026년 제51회',y26:'10.01 – 10.04 (종료)',y27:'10월 초 개최 예상',d:'정선아리랑의 전승과 보존을 위한 전통 문화 축제입니다.',s:'https://arirangfestival.kr'},
- {n:'평창효석문화제',w:'강원 평창 봉평',o:'1999년 시작',y26:'09.04 – 09.13 (종료)',y27:'9월 개최 예상',d:'이효석의 소설 「메밀꽃 필 무렵」의 배경인 메밀꽃밭에서 열리는 문학 축제입니다.',s:'https://hyoseok.com'}
+ {n:'정선아리랑제',w:'강원 정선',o:'2026년 제51회',y26:'10.01 – 10.04 (종료)',y27:'10월 초 개최 예상',d:'정선아리랑의 전승과 보존을 위한 전통 문화 축제입니다. 2026년 제51회를 맞았으며, 아리랑 공연과 전통 문화 프로그램이 마련됩니다.',s:'https://arirangfestival.kr'},
+ {n:'평창효석문화제',w:'강원 평창 봉평',o:'1999년 시작',y26:'09.04 – 09.13 (종료)',y27:'9월 개최 예상',d:'이효석의 소설 「메밀꽃 필 무렵」의 배경인 메밀꽃밭에서 열리는 문학 축제입니다. 메밀꽃이 피는 가을에 맞춰 문학과 자연을 함께 즐길 수 있습니다.',s:'https://hyoseok.com'}
 ]}
 ];
 var SITES=[
@@ -375,5 +384,14 @@ vp.addEventListener('touchend',function(e){
   var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
   if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.6&&Date.now()-st<800){go(dx<0?cur+1:cur-1)}
 },{passive:true});
+function eqFest(){
+  var els=[].slice.call(document.querySelectorAll('.fest'));
+  els.forEach(function(e){e.style.minHeight=''});
+  var m=0;els.forEach(function(e){m=Math.max(m,e.getBoundingClientRect().height)});
+  els.forEach(function(e){e.style.minHeight=Math.ceil(m)+'px'});
+}
+eqFest();
+window.addEventListener('resize',eqFest);
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(eqFest)}
 go(0);
 </script>
