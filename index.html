@@ -222,6 +222,14 @@ button{font:inherit;color:inherit}
 @media screen and (max-width:380px){
   .tabs{gap:3px}.tabs a{font-size:12px;padding:6px 7px}.tocbtn{padding:7px 8px;font-size:12px}
 }
+
+.live-m{display:none}
+@media screen and (max-width:768px){
+  .live-m{display:inline-block;margin-left:8px}
+  .live-d{display:none}
+  .guide{padding:12px 12px}
+  .guide .ln{white-space:nowrap;font-size:clamp(9px,2.6vw,11px);word-break:keep-all}
+}
 </style>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -300,7 +308,7 @@ var EV=[
 /* y26: 2026년 개최, y27: 2027년 개최(예정) */
 var FE=[
 {id:'capital',name:'수도권',rows:[
- {n:'서울빛초롱축제',w:'서울 청계천',o:'2009년 시작',y26:'12월 개최 예정 (세부 일정 발표 전)',y27:'12월 전후 개최 예상',d:'청계천 일대를 형형색색의 등(燈)으로 밝히는 겨울 야간 축제입니다. 지난 시즌에는 2025년 12월 12일부터 2026년 1월 18일까지 열렸습니다.',s:'https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=360'},
+ {n:'서울빛초롱축제',w:'서울 청계천',o:'2009년 시작',y26:'12월 개최 예정 (세부 일정 발표 전)',y26m:'12월 개최예정',y27:'12월 전후 개최 예상',d:'청계천 일대를 형형색색의 등(燈)으로 밝히는 겨울 야간 축제입니다.',s:'https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=360'},
  {n:'수원화성문화제',w:'경기 수원',o:'1964년 시작 · 2026년 제63회',y26:'10.04 – 10.11 (종료)',y27:'10월 초 개최 예상',d:'유네스코 세계유산 수원화성을 배경으로 정조대왕 능행차를 공동 재현하는 대표 역사 문화 축제이며, 글로벌축제로 선정되었습니다.',s:'https://shfestival.com'},
  {n:'안성맞춤 남사당 바우덕이축제',w:'경기 안성',o:'2001년 시작',y26:'10.02 – 10.05 (종료)',y27:'10월 초 개최 예상',d:'남사당 풍물과 줄타기 등 전통 연희를 현대적으로 풀어낸 문화관광축제입니다. 남사당패 최초의 여성 꼭두쇠 바우덕이를 기리는 축제로 알려져 있습니다.'}
 ]},
@@ -323,7 +331,7 @@ var FE=[
  {n:'천안흥타령춤축제',w:'충남 천안',o:'2003년 시작',y26:'10.01 – 10.05 (종료)',y27:'10월 초 개최 예상',d:'거리 퍼레이드와 경연 등 춤을 주제로 한 전국 규모의 축제입니다. 2003년 시작해 해마다 가을 천안에서 열립니다.',s:'https://cheonanfestival.com'}
 ]},
 {id:'gangwon',name:'강원',rows:[
- {n:'화천산천어축제',w:'강원 화천',o:'글로벌축제',y26:'2026–27 겨울 시즌 개최 예정',y27:'2027.01.09 – 01.31 (한국관광공사 등록 일정)',d:'얼어붙은 강 위에서 즐기는 얼음낚시가 대표 프로그램인 겨울 축제입니다. 2027년 체험 이용료 조정이 논의되고 있어 방문 전 공지 확인을 권장합니다.',s:'https://narafestival.com'},
+ {n:'화천산천어축제',w:'강원 화천',o:'글로벌축제',y26:'01.10 – 02.01 (종료)',y27:'2027.01.09 – 01.31 (한국관광공사 등록 일정)',d:'얼어붙은 강 위에서 즐기는 얼음낚시가 대표 프로그램인 겨울 축제로, 글로벌축제로 선정되었습니다.',s:'https://narafestival.com'},
  {n:'강릉단오제',w:'강원 강릉',o:'유네스코 인류무형문화유산 · 국가무형문화재',y26:'06.15 – 06.22 (종료)',y27:'6월 중 개최 예상 (음력 5월 5일 전후)',d:'천 년의 전통을 이어 온 영신행차와 관노가면극, 단오굿 등을 무료로 관람할 수 있는 축제입니다.',s:'https://danojefestival.or.kr'},
  {n:'정선아리랑제',w:'강원 정선',o:'2026년 제51회',y26:'10.01 – 10.04 (종료)',y27:'10월 초 개최 예상',d:'정선아리랑의 전승과 보존을 위한 전통 문화 축제입니다. 2026년 제51회를 맞았으며, 아리랑 공연과 전통 문화 프로그램이 마련됩니다.',s:'https://arirangfestival.kr'},
  {n:'평창효석문화제',w:'강원 평창 봉평',o:'1999년 시작',y26:'09.04 – 09.13 (종료)',y27:'9월 개최 예상',d:'이효석의 소설 「메밀꽃 필 무렵」의 배경인 메밀꽃밭에서 열리는 문학 축제입니다. 메밀꽃이 피는 가을에 맞춰 문학과 자연을 함께 즐길 수 있습니다.',s:'https://hyoseok.com'}
@@ -351,7 +359,7 @@ function add(id,part,title,html){pages.push({id:id,part:part,title:title,html:ht
 add('cover',0,'표지','<div class="sheet cover"><div class="bars" aria-hidden="true"><i></i><i></i><i></i></div><div class="top"><span>CULTURE GUIDE</span><span></span></div><h1>실크로드 문화소식</h1><div class="bottom"><span>정보 기준일 2026. 11. 3.</span><span>화면을 옆으로 밀어 넘기세요</span></div></div>');
 add('toc',0,'차례','<div class="sheet pad toc" style="--pc:var(--navy);--pt:var(--navy)"><h2>차례</h2><p class="sub">항목을 누르면 해당 파트로 이동합니다.</p><ol>'
  +'<li style="--pc:var(--c1);--pt:var(--c1t)"><a data-go="p1"><span class="n">01</span><span><b>지역별 공연·전시 일정</b><span class="d">진행 중이거나 곧 열리는 전시, 콘서트, 음악회</span></span></a></li>'
- +'<li style="--pc:var(--c2);--pt:var(--c2t)"><a data-go="p2"><span class="n">02</span><span><b>대표 지역축제</b><span class="d">해마다 이어지는 전통 축제와 2026·2027년 개최 일정</span></span></a></li>'
+ +'<li style="--pc:var(--c2);--pt:var(--c2t)"><a data-go="p2"><span class="n">02</span><span><b>대표 지역축제</b><span class="d">매년 열리는 지역별 대표축제 소개</span></span></a></li>'
  +'<li style="--pc:var(--c3);--pt:var(--c3t)"><a data-go="p3"><span class="n">03</span><span><b>온라인 쉼터 안내</b><span class="d">웹으로 접속하는 가상 공간과 QR 코드</span></span></a></li>'
  +'</ol><div class="guide"><b>이용안내</b><span class="ln">공연·전시 제목에는 예매·상세 페이지 링크가 연결되어 있습니다.</span><span class="ln">회차, 요금, 예매 가능 여부는 연결된 페이지에서 확인해 주시기 바랍니다.</span></div></div>');
 
@@ -369,18 +377,18 @@ divider('p1',1,'PART ONE','01','지역별 공연·전시 일정','<span class="l
 EV.forEach(function(r,i){
   var h='<div class="sheet pad p1">'+tabs('p1-',EV,r.id)+'<div class="crumb">PART 01 · 지역별 공연·전시 일정</div><div class="chap-h"><h3>'+r.name+'</h3><em>'+r.sub+'</em></div><div class="grid">';
   r.rows.forEach(function(x){
-    h+='<article class="entry"><div class="when">'+esc(x[2])+'</div><span class="kind">'+x[0]+'</span><h4><a href="'+esc(x[4])+'" target="_blank" rel="noopener">'+esc(x[1])+'</a></h4>'+(x[5]?'<span class="live">진행 중</span>':'')+'<div class="where">'+esc(x[3])+'</div></article>';
+    h+='<article class="entry"><div class="when">'+esc(x[2])+(x[5]?'<span class="live live-m">진행 중</span>':'')+'</div><span class="kind">'+x[0]+'</span><h4><a href="'+esc(x[4])+'" target="_blank" rel="noopener">'+esc(x[1])+'</a></h4>'+(x[5]?'<span class="live live-d">진행 중</span>':'')+'<div class="where">'+esc(x[3])+'</div></article>';
   });
   h+='</div>'+(r.note?'<div class="remark">'+esc(r.note)+'</div>':'')+'</div>';
   add('p1-'+r.id,1,'공연·전시 · '+r.name,h);
 });
 
 /* 2부 */
-divider('p2',2,'PART TWO','02','대표 지역축제','<span class="ln">수십 년의 역사를 이어 온 연례 축제를 지역별로 정리했습니다.</span><span class="ln">2027년 일정은 공식 발표 전인 경우 예상 시기로 표기했습니다.</span>',chips('p2-',FE));
+divider('p2',2,'PART TWO','02','대표 지역축제','<span class="ln">오랜 역사를 이어온 연례 축제를 지역별로 정리했습니다.</span><span class="ln">*27년 일정은 예상시기로 표기</span>',chips('p2-',FE));
 FE.forEach(function(r,i){
   var h='<div class="sheet pad p2">'+tabs('p2-',FE,r.id)+'<div class="crumb">PART 02 · 대표 지역축제</div><div class="chap-h"><h3>'+r.name+'</h3></div><div class="grid">';
   r.rows.forEach(function(f){
-    h+='<article class="fest"><h4>'+esc(f.n)+'</h4><div class="org">'+esc(f.w)+' · '+esc(f.o)+'</div><div class="dates"><div><b>2026</b>'+esc(f.y26)+'</div><div><b>2027</b>'+esc(f.y27)+'</div></div><p>'+esc(f.d)+'</p>'+(f.s?'<a class="lk" href="'+esc(f.s)+'" target="_blank" rel="noopener">공식 누리집</a>':'')+'</article>';
+    h+='<article class="fest"><h4>'+esc(f.n)+'</h4><div class="org">'+esc(f.w)+' · '+esc(f.o)+'</div><div class="dates"><div><b>2026</b>'+(f.y26m?'<span class="dl">'+esc(f.y26)+'</span><span class="ds">'+esc(f.y26m)+'</span>':esc(f.y26))+'</div><div><b>2027</b>'+esc(f.y27)+'</div></div><p>'+esc(f.d)+'</p>'+(f.s?'<a class="lk" href="'+esc(f.s)+'" target="_blank" rel="noopener">공식 누리집</a>':'')+'</article>';
   });
   h+='</div></div>';
   add('p2-'+r.id,2,'지역축제 · '+r.name,h);
