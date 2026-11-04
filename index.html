@@ -13,6 +13,7 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html,body{height:100%;margin:0;overflow:hidden}
 body{background:var(--desk);color:var(--ink);font-family:var(--body);line-height:1.6;font-size:15px;
   padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
@@ -87,6 +88,21 @@ button{font:inherit;color:inherit}
   .fest h4{font-size:17px}
   .grid{gap:10px}
   .tabs a{font-size:12.5px;padding:4px 11px}
+  .pg{padding-top:8px;padding-bottom:8px}
+  /* 내용이 짧은 쪽은 내용 높이만큼만 (하단 빈 흰 여백 제거) */
+  .pg>.sheet.pad.p1,.pg>.sheet.pad.p2,.pg>.sheet.pad.p3{min-height:0}
+  /* 설명 문단: 문장 단위로 구분, 줄은 균형 있게 */
+  .divider p{font-size:14.5px;line-height:1.7}
+  .divider .ln,.guide .ln,.notice p{text-wrap:balance}
+  .divider .ln+.ln{margin-top:8px}
+  /* 차례: 화면 높이를 고르게 채움 */
+  .toc{display:flex;flex-direction:column}
+  .toc ol{flex:1;display:flex;flex-direction:column;margin-bottom:16px}
+  .toc li{flex:1;display:flex}
+  .toc li a{flex:1;align-content:center}
+  .toc .n{font-size:38px}
+  .toc b{font-size:19px}
+  .guide{margin-top:0}
 }
 .kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--pt);border:1px solid var(--pc);padding:0 7px;border-radius:2px;margin-right:6px;vertical-align:1px}
 .entry h4{display:inline;font-size:15.5px;margin:0;font-weight:700;overflow-wrap:anywhere}
@@ -126,8 +142,8 @@ button{font:inherit;color:inherit}
 .tocbtn{font-size:13px;font-weight:700;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--soft);padding:5px 13px;border-radius:99px;cursor:pointer;white-space:nowrap;margin-left:auto}
 .tocbtn:hover{border-color:var(--pc)}
 /* 판권 */
-.colo{display:grid;gap:8px;align-content:end;font-size:13.5px;color:var(--muted)}
-.colo b{color:var(--ink);font-family:var(--display);font-size:22px}
+.colo{display:grid;gap:8px;align-content:end;font-size:13.5px;background:var(--navy)!important;color:var(--champ)}
+.colo b{color:var(--ivory);font-family:var(--display);font-size:22px}
 
 /* 하단 내비게이션 */
 .bar{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto auto;gap:8px;align-items:center;background:var(--page);border-top:3px solid var(--pc);padding:8px max(10px,env(safe-area-inset-left,0px)) 8px max(10px,env(safe-area-inset-right,0px))}
@@ -359,5 +375,8 @@ vp.addEventListener('touchend',function(e){
   var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
   if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.6&&Date.now()-st<800){go(dx<0?cur+1:cur-1)}
 },{passive:true});
+go(0);
+</script>
+
 go(0);
 </script>
