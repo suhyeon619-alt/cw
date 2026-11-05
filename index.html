@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#18243B">
-<title>실크로드 문화소식</title>
+<title>실크로드 </title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;700;900&display=swap">
@@ -230,6 +230,14 @@ button{font:inherit;color:inherit}
   .guide{padding:12px 12px}
   .guide .ln{white-space:nowrap;font-size:clamp(9px,2.6vw,11px);word-break:keep-all}
 }
+
+@media screen and (max-width:768px){
+  /* 16쪽 휴대폰 배치 순서: 절 → 교회 → 성당 → 여행 → 요가원 → 사우나 → 수영장 → 순례길 */
+  .qrgrid .qc0{order:1}.qrgrid .qc2{order:2}.qrgrid .qc4{order:3}.qrgrid .qc6{order:4}
+  .qrgrid .qc1{order:5}.qrgrid .qc3{order:6}.qrgrid .qc5{order:7}.qrgrid .qc7{order:8}
+  /* 17쪽 휴대폰: 정보 기준일 문구 숨김 */
+  .colo .asof{display:none}
+}
 </style>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -356,7 +364,7 @@ var pages=[];
 function add(id,part,title,html){pages.push({id:id,part:part,title:title,html:html})}
 
 /* 표지 · 차례 */
-add('cover',0,'표지','<div class="sheet cover"><div class="bars" aria-hidden="true"><i></i><i></i><i></i></div><div class="top"><span>CULTURE GUIDE</span><span></span></div><h1>실크로드 문화소식</h1><div class="bottom"><span>정보 기준일 2026. 11. 3.</span><span>화면을 옆으로 밀어 넘기세요</span></div></div>');
+add('cover',0,'표지','<div class="sheet cover"><div class="bars" aria-hidden="true"><i></i><i></i><i></i></div><div class="top"><span>CULTURE GUIDE</span><span></span></div><h1>실크로드 </h1><div class="bottom"><span>정보 기준일 2026. 11. 3.</span><span>화면을 옆으로 밀어 넘기세요</span></div></div>');
 add('toc',0,'차례','<div class="sheet pad toc" style="--pc:var(--navy);--pt:var(--navy)"><h2>차례</h2><p class="sub">항목을 누르면 해당 파트로 이동합니다.</p><ol>'
  +'<li style="--pc:var(--c1);--pt:var(--c1t)"><a data-go="p1"><span class="n">01</span><span><b>지역별 공연·전시 일정</b><span class="d">진행 중이거나 곧 열리는 전시, 콘서트, 음악회</span></span></a></li>'
  +'<li style="--pc:var(--c2);--pt:var(--c2t)"><a data-go="p2"><span class="n">02</span><span><b>대표 지역축제</b><span class="d">매년 열리는 지역별 대표축제 소개</span></span></a></li>'
@@ -398,13 +406,13 @@ FE.forEach(function(r,i){
 divider('p3',3,'PART THREE','03','온라인 쉼터 안내',"<span class=\"ln\">일상 속 쉼을 담은 화제의 메타버스 가상공간들입니다.</span><span class=\"ln\">QR 코드를 스마트폰 카메라로 비추면 바로 접속됩니다.</span>",'');
 var q='<div class="sheet pad p3"><div class="tabrow"><span></span><a class="tocbtn" data-go="toc">☰ 차례로</a></div><div class="crumb">PART 03 · 온라인 쉼터 안내</div><div class="chap-h"><h3>가상공간</h3><em>웹 브라우저로 접속</em><span class="idx">QR</span></div><div class="qrgrid">';
 SITES.forEach(function(s,i){
-  q+='<article class="qcard"><div class="qr" id="qr'+i+'" role="img" aria-label="'+esc(s.n)+' 접속 QR 코드"></div><div><span class="kind">'+esc(s.k)+'</span><h4>'+esc(s.n)+'</h4><p><span class="dl">'+esc(s.d)+'</span><span class="ds">'+esc(s.ds)+'</span></p><div class="u"><a href="'+esc(s.u)+'" target="_blank" rel="noopener">'+esc(s.u.replace(/^https?:\/\//,'').replace(/\/$/,''))+'</a></div></div></article>';
+  q+='<article class="qcard qc'+i+'"><div class="qr" id="qr'+i+'" role="img" aria-label="'+esc(s.n)+' 접속 QR 코드"></div><div><span class="kind">'+esc(s.k)+'</span><h4>'+esc(s.n)+'</h4><p><span class="dl">'+esc(s.d)+'</span><span class="ds">'+esc(s.ds)+'</span></p><div class="u"><a href="'+esc(s.u)+'" target="_blank" rel="noopener">'+esc(s.u.replace(/^https?:\/\//,'').replace(/\/$/,''))+'</a></div></div></article>';
 });
 q+='</div><div class="notice"><b>이용 전 안내</b><p>소개된 사이트는 개인 또는 소규모 팀이 제작한 외부 웹 콘텐츠로, 해당 종교 기관 등의 공식 서비스가 아닙니다.</p><p>접속자가 많을 때는 연결이 지연되거나 주소가 변경될 수 있으며, 개인정보 입력이 필요한 경우 주의해 주시기 바랍니다.</p></div></div>';
 add('p3-sites',3,'온라인 쉼터 · QR',q);
 
 /* 판권 */
-add('end',0,'판권','<div class="sheet pad colo"><b>실크로드 문화소식</b><span>정보 기준일: 2026년 11월 3일. 모든 일정은 주최 측 사정에 따라 변경될 수 있습니다.</span><span>자료 출처: NOL티켓, 예술의전당, 한국관광공사 축제 정보, 문화체육관광부 2026~2027 문화관광축제 발표, 각 지자체 및 언론 보도.</span></div>');
+add('end',0,'판권','<div class="sheet pad colo"><b>실크로드 </b><span><span class="asof">정보 기준일: 2026년 11월 3일. </span>모든 일정은 주최 측 사정에 따라 변경될 수 있습니다.</span><span>자료 출처: NOL티켓, 예술의전당, 한국관광공사 축제 정보, 문화체육관광부 2026~2027 문화관광축제 발표, 각 지자체 및 언론 보도.</span></div>');
 
 /* 렌더 */
 var track=document.getElementById('track'),app=document.getElementById('app');
